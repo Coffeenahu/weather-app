@@ -1,0 +1,349 @@
+/* ===========================
+   Reset & Base
+=========================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f2f5;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 16px;
+}
+
+/* ===========================
+   App Container
+=========================== */
+.app {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    width: 100%;
+    max-width: 480px;
+    padding: 32px 28px;
+}
+
+.app-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+/* ===========================
+   Input Area
+=========================== */
+.input-area {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.input-row {
+    display: flex;
+    gap: 8px;
+}
+
+.date-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.date-label {
+    font-size: 0.85rem;
+    color: #64748b;
+    white-space: nowrap;
+}
+
+.due-date-input {
+    padding: 6px 10px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-family: inherit;
+    color: #555;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.due-date-input:focus {
+    outline: none;
+    border-color: #4f46e5;
+}
+
+.todo-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s;
+    outline: none;
+}
+
+.todo-input:focus {
+    border-color: #4f46e5;
+}
+
+.btn-add {
+    padding: 12px 20px;
+    background: #4f46e5;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    white-space: nowrap;
+}
+
+.btn-add:hover {
+    background: #4338ca;
+    transform: translateY(-1px);
+}
+
+.btn-add:active {
+    transform: translateY(0);
+}
+
+/* ===========================
+   Filters
+=========================== */
+.filters {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    flex: 1;
+    padding: 8px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    background: #fff;
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-btn:hover {
+    border-color: #4f46e5;
+    color: #4f46e5;
+}
+
+.filter-btn.active {
+    background: #4f46e5;
+    border-color: #4f46e5;
+    color: #fff;
+}
+
+/* ===========================
+   Todo List
+=========================== */
+.todo-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 60px;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    transition: border-color 0.2s, opacity 0.2s;
+    animation: slideIn 0.2s ease;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.todo-item:hover {
+    border-color: #c7d2fe;
+}
+
+.todo-item.done {
+    opacity: 0.55;
+    border-color: #e2e8f0;
+}
+
+/* 체크박스 */
+.todo-check {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #cbd5e1;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.todo-check:hover {
+    border-color: #4f46e5;
+}
+
+.todo-item.done .todo-check {
+    background: #4f46e5;
+    border-color: #4f46e5;
+}
+
+.todo-item.done .todo-check::after {
+    content: '✓';
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+/* 텍스트 + 마감일 래퍼 */
+.todo-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    min-width: 0;
+}
+
+.todo-text {
+    font-size: 1rem;
+    color: #1a1a2e;
+    word-break: break-all;
+}
+
+.todo-item.done .todo-text {
+    text-decoration: line-through;
+    color: #94a3b8;
+}
+
+/* 마감일 뱃지 */
+.due-date-badge {
+    font-size: 0.75rem;
+    color: #64748b;
+    background: #f1f5f9;
+    padding: 2px 8px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.due-date-badge.overdue {
+    color: #dc2626;
+    background: #fee2e2;
+}
+
+.due-date-badge.due-today {
+    color: #d97706;
+    background: #fef3c7;
+}
+
+/* 드래그 핸들 */
+.drag-handle {
+    color: #cbd5e1;
+    font-size: 1rem;
+    cursor: grab;
+    flex-shrink: 0;
+    padding: 0 2px;
+    user-select: none;
+    line-height: 1;
+}
+
+.drag-handle:hover {
+    color: #94a3b8;
+}
+
+.todo-item.dragging {
+    opacity: 0.4;
+    border-style: dashed;
+}
+
+.todo-item.drag-over {
+    border-color: #4f46e5;
+    background: #f0f0ff;
+    transform: scale(1.01);
+}
+
+/* 삭제 버튼 */
+.btn-delete {
+    background: none;
+    border: none;
+    color: #cbd5e1;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+    border-radius: 4px;
+    transition: color 0.2s;
+    flex-shrink: 0;
+}
+
+.btn-delete:hover {
+    color: #ef4444;
+}
+
+/* 빈 목록 메시지 */
+.empty-msg {
+    text-align: center;
+    color: #94a3b8;
+    font-size: 0.95rem;
+    padding: 24px 0;
+}
+
+/* ===========================
+   Footer
+=========================== */
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #f1f5f9;
+    font-size: 0.875rem;
+    color: #94a3b8;
+}
+
+.btn-clear {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.btn-clear:hover {
+    color: #ef4444;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+@media (max-width: 480px) {
+    .app {
+        padding: 24px 16px;
+    }
+    .app-title {
+        font-size: 1.5rem;
+    }
+}
