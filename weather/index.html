@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="현재 위치 기반 날씨 정보 앱">
+    <meta name="theme-color" content="#2196F3">
+    <title>모바일 날씨 앱</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="icons/icon-192.png">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 -->
+        <header class="header">
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-input" 
+                    placeholder="도시명 입력"
+                    autocomplete="off"
+                >
+                <button id="searchBtn" class="search-btn" aria-label="검색">🔍</button>
+            </div>
+            <div id="searchResults" class="search-results hidden"></div>
+        </header>
+
+        <!-- 로딩 표시 -->
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>날씨 정보를 불러오는 중...</p>
+        </div>
+
+        <!-- 에러 메시지 -->
+        <div id="error" class="error hidden"></div>
+
+        <!-- 메인 콘텐츠 -->
+        <main class="main-content hidden">
+            <!-- 즐겨찾기 목록 -->
+            <div id="favoritesList" class="favorites-list hidden"></div>
+
+            <!-- 현재 도시명 -->
+            <div class="city-header">
+                <span id="cityName" class="city-name">위치 감지중...</span>
+                <button id="favoriteBtn" class="favorite-btn" aria-label="즐겨찾기">☆</button>
+            </div>
+
+            <!-- 현재 날씨 카드 -->
+            <section class="weather-card">
+                <div class="weather-icon-container">
+                    <div id="weatherIcon" class="weather-icon-large"></div>
+                </div>
+                <div class="temp-display">
+                    <div class="current-temp">
+                        <span id="currentTemp">--</span><span class="unit">°C</span>
+                    </div>
+                    <div class="weather-desc" id="weatherDesc">--</div>
+                </div>
+                <div class="feels-like">
+                    체감 <span id="feelsLike">--</span>°C
+                </div>
+            </section>
+
+            <!-- 날씨 상세 정보 -->
+            <section class="weather-details">
+                <div class="detail-card">
+                    <div class="detail-icon">💧</div>
+                    <div class="detail-label">습도</div>
+                    <div class="detail-value" id="humidity">--%</div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-icon">💨</div>
+                    <div class="detail-label">풍속</div>
+                    <div class="detail-value" id="windSpeed">-- m/s</div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-icon">🌫️</div>
+                    <div class="detail-label">미세먼지</div>
+                    <div class="detail-value" id="aqi">--</div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-icon">🌡️</div>
+                    <div class="detail-label">최고/최저</div>
+                    <div class="detail-value"><span id="tempMax">--</span>° / <span id="tempMin">--</span>°</div>
+                </div>
+            </section>
+
+            <!-- 시간별 예보 -->
+            <section class="forecast-section">
+                <h2 class="section-title">시간별 예보</h2>
+                <div id="hourlyList" class="hourly-list"></div>
+            </section>
+
+            <!-- 5일 예보 -->
+            <section class="forecast-section">
+                <h2 class="section-title">5일 예보</h2>
+                <div id="forecastList" class="forecast-list">
+                    <!-- 동적으로 생성됨 -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').catch(err => {
+                console.log('Service Worker 등록 실패:', err);
+            });
+        }
+    </script>
+
+    <script src="js/config.js"></script>
+    <script src="js/cache.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/weather.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

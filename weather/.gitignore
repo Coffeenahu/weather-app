@@ -1,0 +1,41 @@
+# Dependencies and build outputs
+node_modules/
+dist/
+build/
+*.min.js
+*.min.css
+
+# IDE and Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# API 키 설정 파일 (절대 커밋하면 안 됨)
+js/config.js
+
+# Environment variables (절대 커밋하면 안 됨)
+.env
+.env.local
+.env.*.local
+.env.development.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# Service Worker cache
+sw-cache/
+
+# Local testing
+coverage/
+*.test.js
+
+# OS
+__PYCACHE__/
+*.pyc
